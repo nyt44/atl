@@ -1,19 +1,11 @@
-#include <boost/interprocess/shared_memory_object.hpp>
-#include <boost/interprocess/mapped_region.hpp>
-#include <boost/interprocess/sync/named_condition.hpp>
 #include <iostream>
 
-using namespace boost::interprocess;
+#include "SharedMemoryTransporter.hpp"
 
 int main()
 {
-  shared_memory_object shdmem{open_or_create, "atl_shm", read_write};
-  mapped_region region{shdmem, read_write};
-  int *i1 = static_cast<int*>(region.get_address());
+  SharedMemoryTransporter transporter{"atl"};
 
-  named_condition named_cnd{open_or_create, "atl_cnd"};
-
-  *i1 = 101;
-
-  named_cnd.notify_all();
+  int data = 999;
+  transporter.Send(static_cast<void*>(&data), sizeof(data));
 }

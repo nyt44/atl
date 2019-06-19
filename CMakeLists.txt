@@ -21,11 +21,13 @@ if(CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 endif(CCACHE_FOUND)
 
+add_subdirectory(shared_memory)
+
 add_executable(sender sender.cpp)
-target_link_libraries(sender -lrt -lpthread)
+target_link_libraries(sender shared_memory_lib -lrt -lpthread)
 
 add_executable(receiver receiver.cpp)
-target_link_libraries(receiver -lrt -lpthread)
+target_link_libraries(receiver shared_memory_lib -lrt -lpthread)
 
 add_executable(creator creator.cpp)
 target_link_libraries(creator -lrt -lpthread)
