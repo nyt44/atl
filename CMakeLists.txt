@@ -22,18 +22,10 @@ if(CCACHE_FOUND)
 endif(CCACHE_FOUND)
 
 add_subdirectory(shared_memory)
+add_subdirectory(atl_daemon)
 
 add_executable(sender sender.cpp)
 target_link_libraries(sender shared_memory_lib -lrt -lpthread)
 
 add_executable(receiver receiver.cpp)
 target_link_libraries(receiver shared_memory_lib -lrt -lpthread)
-
-add_executable(creator creator.cpp)
-target_link_libraries(creator -lrt -lpthread)
-
-add_executable(destroyer destroyer.cpp)
-target_link_libraries(destroyer -lrt -lpthread)
-
-
-
