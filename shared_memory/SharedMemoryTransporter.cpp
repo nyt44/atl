@@ -5,13 +5,10 @@
 #include <boost/interprocess/sync/scoped_lock.hpp>
 
 SharedMemoryTransporter::SharedMemoryTransporter(const std::string& name)
-    : shm_object_name_{name + "_shm"},
-      shm_condition_variable_name_{name + "_cnd"},
-      shm_mutex_name_{name + "_mtx"},
-      shm_object_{boost::interprocess::open_or_create, shm_object_name_.c_str(), boost::interprocess::read_write},
+    : shm_object_{boost::interprocess::open_or_create, (name + "_shm").c_str(), boost::interprocess::read_write},
       shm_region_{shm_object_, boost::interprocess::read_write},
-      shm_condition_variable_{boost::interprocess::open_or_create, shm_condition_variable_name_.c_str()},
-      shm_mutex_{boost::interprocess::open_or_create, shm_mutex_name_.c_str()} {}
+      shm_condition_variable_{boost::interprocess::open_or_create, (name + "_cnd").c_str()},
+      shm_mutex_{boost::interprocess::open_or_create, (name + "_mtx").c_str()} {}
 
 void SharedMemoryTransporter::Send(void *data, size_t size)
 {
