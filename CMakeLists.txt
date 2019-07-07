@@ -21,6 +21,8 @@ if(CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 endif(CCACHE_FOUND)
 
+enable_testing()
+
 add_subdirectory(shared_memory)
 add_subdirectory(atl_daemon)
 
