@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "ConnectionOwner.hpp"
+#include "Connection.hpp"
 
 int main()
 {
-  ConnectionOwner connection{"atl"};
+  atl::Connection connection{"atl"};
 
   std::cout << "Press any key to close daemon...";
   std::cin.get();
