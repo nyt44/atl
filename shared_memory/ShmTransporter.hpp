@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ShmTransporterInterface.hpp"
+
 #include <string>
 #include <functional>
 #include <exception>
@@ -9,12 +11,16 @@
 #include <boost/interprocess/sync/named_condition.hpp>
 #include <boost/interprocess/sync/named_mutex.hpp>
 
-class SharedMemoryTransporter
+namespace atl
+{
+
+class ShmTransporter : public ShmTransporterInterface
 {
  public:
-  explicit SharedMemoryTransporter(const std::string& name);
-  void Send(void* data, size_t size);
-  void Receive(std::function<void(void*)> callback);
+  explicit ShmTransporter(const std::string& name);
+  void Send(void* data, size_t size) override;
+  void Receive(std::function<void(void*)> callback) override;
+  std::string Receive() override;
 
  private:
   boost::interprocess::shared_memory_object shm_object_;
@@ -28,3 +34,5 @@ class TooBigDataSizeErrror : public std::runtime_error
  public:
   TooBigDataSizeErrror(const std::string& msg);
 };
+
+} // namespace atl

@@ -4,6 +4,7 @@ project(atl)
 
 #debug options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")
 
 #warning options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")

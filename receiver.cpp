@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "SharedMemoryTransporter.hpp"
+#include "ShmTransporter.hpp"
 
 int main()
 {
-  SharedMemoryTransporter transporter{"atl"};
+  atl::ShmTransporter transporter{"atl"};
   std::cout << "Waiting  for data..." << '\n';
   transporter.Receive([](void* raw_data)
   {

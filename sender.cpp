@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "SharedMemoryTransporter.hpp"
+#include "ShmTransporter.hpp"
 
 int main()
 {
-  SharedMemoryTransporter transporter{"atl"};
+  atl::ShmTransporter transporter{"atl"};
   int data = 999;
   transporter.Send(static_cast<void*>(&data), sizeof(data));
 }

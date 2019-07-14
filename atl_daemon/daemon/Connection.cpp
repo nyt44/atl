@@ -9,7 +9,7 @@ constexpr auto kFixedShmSize = 1024;
 
 namespace atl
 {
-Connection::Connection(std::string name) : shm_segment_name_{std::move(name) + "_shm"}
+Connection::Connection(const std::string& name) : shm_segment_name_{name + "_shm"}
 {
   boost::interprocess::shared_memory_object shm_segment_object{boost::interprocess::open_or_create,
                                                                shm_segment_name_.c_str(),

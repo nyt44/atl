@@ -7,7 +7,7 @@ namespace atl
 class Connection
 {
  public:
-  explicit Connection(std::string name);
+  explicit Connection(const std::string& name);
   ~Connection();
  private:
   std::string shm_segment_name_;
