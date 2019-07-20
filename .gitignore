@@ -8,3 +8,5 @@ Testing/**
 *.files
 *.includes
 .gdb_history
+atl.cflags
+atl.cxxflags

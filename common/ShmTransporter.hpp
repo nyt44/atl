@@ -4,7 +4,6 @@
 
 #include <string>
 #include <functional>
-#include <exception>
 
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/mapped_region.hpp>
@@ -29,10 +28,10 @@ class ShmTransporter : public ShmTransporterInterface
   boost::interprocess::named_mutex shm_mutex_;
 };
 
-class TooBigDataSizeErrror : public std::runtime_error
+class RealTransporterFactoryMethod : public TransporterFactoryMethod
 {
  public:
-  TooBigDataSizeErrror(const std::string& msg);
+  std::unique_ptr<ShmTransporterInterface> CreateTransporter(const std::string& name) override;
 };
 
 } // namespace atl

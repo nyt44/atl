@@ -24,11 +24,12 @@ endif(CCACHE_FOUND)
 
 enable_testing()
 
-add_subdirectory(shared_memory)
+add_subdirectory(common)
 add_subdirectory(atl_daemon)
+add_subdirectory(atl_client)
 
 add_executable(sender sender.cpp)
-target_link_libraries(sender shared_memory_lib -lrt -lpthread)
+target_link_libraries(sender common rt pthread)
 
 add_executable(receiver receiver.cpp)
-target_link_libraries(receiver shared_memory_lib -lrt -lpthread)
+target_link_libraries(receiver common rt pthread)

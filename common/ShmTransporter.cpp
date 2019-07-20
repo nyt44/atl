@@ -1,6 +1,7 @@
 #include "ShmTransporter.hpp"
 
 #include <cstring>
+#include <exception>
 
 #include <boost/interprocess/sync/scoped_lock.hpp>
 
@@ -17,7 +18,7 @@ void ShmTransporter::Send(void *data, size_t size)
 {
   if (size > shm_region_.get_size())
   {
-    throw TooBigDataSizeErrror("The size of data to sent exceeds the shared memory buffer");
+    throw std::runtime_error("The size of data to sent exceeds the shared memory buffer");
   }
   auto ptr_to_shm = shm_region_.get_address();
   std::memcpy(ptr_to_shm, data, size);
@@ -40,6 +41,9 @@ std::string ShmTransporter::Receive()
   return std::string{static_cast<const char *>(ptr_to_shm)};
 }
 
-TooBigDataSizeErrror::TooBigDataSizeErrror(const std::string& msg) : std::runtime_error{msg} {}
+std::unique_ptr<ShmTransporterInterface> RealTransporterFactoryMethod::CreateTransporter(const std::string& name)
+{
+  return std::make_unique<ShmTransporter>(name);
+}
 
 } // namespace atl
