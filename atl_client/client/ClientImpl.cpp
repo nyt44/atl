@@ -10,7 +10,7 @@ ClientImpl::ClientImpl(const std::string& conn_str, ShmTransporterInterface& dae
   : daemon_stream_{daemon_stream}, transporter_factory_{transporter_factory}, conn_str_{conn_str}
 {
   auto add_request_str = "+" + conn_str_;
-  daemon_stream_.Send(static_cast<void*>(add_request_str.data()), add_request_str.size());
+  daemon_stream_.Send(add_request_str);
   auto response = daemon_stream_.Receive();
 
   if (response == "ok")
@@ -19,7 +19,8 @@ ClientImpl::ClientImpl(const std::string& conn_str, ShmTransporterInterface& dae
   }
   else
   {
-    throw std::runtime_error{"Channel requesting is unsuccessfull"};
+    std::string err_msg = "Channel requesting is unsuccessfull. Response from daemon: " + response;
+    throw std::runtime_error{err_msg};
   }
 }
 
@@ -28,7 +29,7 @@ ClientImpl::~ClientImpl()
   try
   {
     auto del_request_str = "-" + conn_str_;
-    daemon_stream_.Send(static_cast<void*>(del_request_str.data()), del_request_str.size());
+    daemon_stream_.Send(del_request_str);
     // TODO Receive
   }
   catch (...)
@@ -37,9 +38,9 @@ ClientImpl::~ClientImpl()
   }
 }
 
-void ClientImpl::Send(void * data, size_t size)
+void ClientImpl::Send(const std::string& data)
 {
-  transporter_->Send(data, size);
+  transporter_->Send(data);
 }
 
 std::string ClientImpl::Receive()

@@ -1,6 +1,6 @@
 file(GLOB SOURCE_FILES "*.hpp" "*.cpp")
 
-add_library(common ${SOURCE_FILES})
+add_library(common SHARED ${SOURCE_FILES})
 target_link_libraries(common rt
                              pthread)
 

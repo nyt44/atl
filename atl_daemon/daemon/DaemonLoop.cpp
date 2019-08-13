@@ -37,7 +37,8 @@ void DaemonLoop::HandleCommand(bool (atl::ConnectionDiaryInterface::* diary_meth
   {
     response = "nok";
   }
-  transporter_.Send(static_cast<void*>(response.data()), response.size());
+
+  transporter_.Send(response);
 }
 
 } // namespace atl

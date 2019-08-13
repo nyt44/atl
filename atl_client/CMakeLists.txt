@@ -4,3 +4,5 @@ add_subdirectory(client)
 
 add_library(atl_client SHARED ${SOURCE_FILES})
 target_link_libraries(atl_client client)
+
+target_include_directories(atl_client PUBLIC .)

@@ -3,7 +3,6 @@
 #include "ShmTransporterInterface.hpp"
 
 #include <string>
-#include <functional>
 
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/mapped_region.hpp>
@@ -17,8 +16,7 @@ class ShmTransporter : public ShmTransporterInterface
 {
  public:
   explicit ShmTransporter(const std::string& name);
-  void Send(void* data, size_t size) override;
-  void Receive(std::function<void(void*)> callback) override;
+  void Send(const std::string& data) override;
   std::string Receive() override;
 
  private:

@@ -15,8 +15,8 @@ namespace
 const std::string kQuitCommand{"quit"};
 const std::string kUnknownCommand{"qwerty"};
 const std::string kExampleConnectionStr{"1-2:1"};
-constexpr int kOkResponseSize = 2;
-constexpr int kNokResponseSize = 3;
+const std::string kOkResponse{"ok"};
+const std::string kNokResponse{"nok"};
 }
 
 class DaemonLoopTest : public Test
@@ -47,7 +47,7 @@ TEST_F(DaemonLoopTest, WhenCommandStartingWithPlusThenConnectionIsAdded)
 {
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return("+" + kExampleConnectionStr));
   EXPECT_CALL(diary_mock, AddConnection(kExampleConnectionStr)).WillOnce(Return(true));
-  EXPECT_CALL(transporter_mock, Send(_, kOkResponseSize));
+  EXPECT_CALL(transporter_mock, Send(kOkResponse));
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return(kQuitCommand));
 
   test_obj.Run();
@@ -57,7 +57,7 @@ TEST_F(DaemonLoopTest, WhenCommandStartingWithMinusThenConnectionIsDeleted)
 {
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return("-" + kExampleConnectionStr));
   EXPECT_CALL(diary_mock, DeleteConnection(kExampleConnectionStr)).WillOnce(Return(true));
-  EXPECT_CALL(transporter_mock, Send(_, kOkResponseSize));
+  EXPECT_CALL(transporter_mock, Send(kOkResponse));
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return(kQuitCommand));
 
   test_obj.Run();
@@ -67,7 +67,7 @@ TEST_F(DaemonLoopTest, WhenAddingConnectionFailsThenDaemonSendsNok)
 {
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return("+" + kExampleConnectionStr));
   EXPECT_CALL(diary_mock, AddConnection(kExampleConnectionStr)).WillOnce(Return(false));
-  EXPECT_CALL(transporter_mock, Send(_, kNokResponseSize));
+  EXPECT_CALL(transporter_mock, Send(kNokResponse));
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return(kQuitCommand));
 
   test_obj.Run();
@@ -77,7 +77,7 @@ TEST_F(DaemonLoopTest, WhenDeletingConnectionFailsThenDaemonSendsNok)
 {
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return("-" + kExampleConnectionStr));
   EXPECT_CALL(diary_mock, DeleteConnection(kExampleConnectionStr)).WillOnce(Return(false));
-  EXPECT_CALL(transporter_mock, Send(_, kNokResponseSize));
+  EXPECT_CALL(transporter_mock, Send(kNokResponse));
   EXPECT_CALL(transporter_mock, Receive()).WillOnce(Return(kQuitCommand));
 
   test_obj.Run();

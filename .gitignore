@@ -4,7 +4,7 @@ Testing/**
 #Qt creator files
 *.config
 *.creator
-*.creator.user
+*.creator.user*
 *.files
 *.includes
 .gdb_history

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <string>
 #include <memory>
 
@@ -11,8 +10,7 @@ class ShmTransporterInterface
 {
  public:
   virtual ~ShmTransporterInterface() = default;
-  virtual void Send(void* data, size_t size) = 0;
-  virtual void Receive(std::function<void(void*)> callback) = 0;
+  virtual void Send(const std::string& data) = 0;
   virtual std::string Receive() = 0;
 };
 

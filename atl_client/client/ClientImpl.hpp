@@ -14,7 +14,7 @@ class ClientImpl
   ClientImpl(const std::string& conn_str, ShmTransporterInterface& daemon_stream,
              TransporterFactoryMethod& transporter_factory);
   ~ClientImpl();
-  void Send(void* data, size_t size);
+  void Send(const std::string& data);
   std::string Receive();
 
  private:

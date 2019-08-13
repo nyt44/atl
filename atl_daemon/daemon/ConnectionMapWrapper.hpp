@@ -3,6 +3,7 @@
 #include "ConnectionMapWrapperInterface.hpp"
 
 #include <unordered_map>
+#include <memory>
 
 #include "Connection.hpp"
 
@@ -22,7 +23,7 @@ class ConnectionMapWrapper : public ConnectionMapWrapperInterface
  private:
   struct Entry
   {
-    Entry(const std::string& s) : connection{s} {}
+    explicit Entry(const std::string& s) : connection{s} {}
     Connection connection;
     int ref_count{0};
   };

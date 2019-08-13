@@ -1,7 +1,10 @@
--replace void* by vector, string, etc in Send() interface
-  - update Tests, make brtter matchers
 - add logging library
   - ClientImpl dtor ignore response from server. It should print the message in case of negative response
-- get rid of Receive() with callback parameter
+  - add logs for e.g. creating/removing connection
+- functional testing framework
 - investigate string_view, limit number of copies of connection string
 - timed_receive
+- add std::vector version of Send method in ATLClient
+
+BUGS:
+- ATL Daemon needs system reboot

@@ -1,12 +1,12 @@
 #include "ConnectionMapWrapper.hpp"
 
+
 namespace atl
 {
 
 bool ConnectionMapWrapper::AddEntry(const std::string& connection_str)
 {
-  auto entry =  Entry{connection_str};
-  auto insertion_result = diary_.emplace(connection_str, std::move(entry));
+  auto insertion_result = diary_.emplace(connection_str, connection_str);
   return insertion_result.second;
 }
 

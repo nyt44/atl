@@ -28,8 +28,11 @@ add_subdirectory(common)
 add_subdirectory(atl_daemon)
 add_subdirectory(atl_client)
 
-add_executable(sender sender.cpp)
-target_link_libraries(sender common rt pthread)
+add_executable(sender Sender.cpp)
+target_link_libraries(sender atl_client)
 
-add_executable(receiver receiver.cpp)
-target_link_libraries(receiver common rt pthread)
+add_executable(receiver Receiver.cpp)
+target_link_libraries(receiver atl_client)
+
+add_executable(daemon_terminator DaemonTerminator.cpp)
+target_link_libraries(daemon_terminator atl_client)

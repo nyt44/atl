@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <string>
+
 #include "ShmTransporterInterface.hpp"
 
 namespace mocks
@@ -9,8 +11,7 @@ namespace mocks
 class ShmTransporterMock : public atl::ShmTransporterInterface
 {
  public:
-  MOCK_METHOD2(Send, void(void*, size_t));
-  MOCK_METHOD1(Receive, void(std::function<void(void*)>));
+  MOCK_METHOD1(Send, void(const std::string&));
   MOCK_METHOD0(Receive, std::string());
 };
 
