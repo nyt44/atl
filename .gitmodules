@@ -1,0 +1,3 @@
+[submodule "dbg_trace"]
+	path = dbg_trace
+	url = https://github.com/nyt44/dbg_trace.git
