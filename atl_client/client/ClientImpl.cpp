@@ -2,6 +2,8 @@
 
 #include <exception>
 
+#include "dbg_trace.hpp"
+
 namespace atl
 {
 
@@ -20,6 +22,7 @@ ClientImpl::ClientImpl(const std::string& conn_str, ShmTransporterInterface& dae
   else
   {
     std::string err_msg = "Channel requesting is unsuccessfull. Response from daemon: " + response;
+    LOG_ERROR(err_msg);
     throw std::runtime_error{err_msg};
   }
 }
@@ -34,7 +37,7 @@ ClientImpl::~ClientImpl()
   }
   catch (...)
   {
-    // TODO print sth here
+    LOG_ERROR("ATL Client destruction failed");
   }
 }
 

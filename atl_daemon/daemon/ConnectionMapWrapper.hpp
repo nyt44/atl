@@ -25,7 +25,7 @@ class ConnectionMapWrapper : public ConnectionMapWrapperInterface
   {
     explicit Entry(const std::string& s) : connection{s} {}
     Connection connection;
-    int ref_count{0};
+    int ref_count{1};
   };
   std::unordered_map<std::string, Entry> diary_;
 };

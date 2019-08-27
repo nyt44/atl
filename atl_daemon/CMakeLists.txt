@@ -5,4 +5,5 @@ add_subdirectory(daemon)
 add_executable(atl_daemon ${SOURCE_FILES})
 target_link_libraries(atl_daemon daemon
                                  pthread
-                                 rt)
+                                 rt
+                                 dbg_trace)

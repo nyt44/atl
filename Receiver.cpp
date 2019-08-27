@@ -1,11 +1,14 @@
-#include <iostream>
-
 #include "ATLClient.hpp"
+#include "dbg_trace.hpp"
+
 
 int main()
 {
+  dbg_trace::SetVerbosity(dbg_trace::Level::kInfo);
+  LOG_INFO("Receiver started");
+
   atl::Client client{1, 2, 1};
-  std::cout << "Waiting  for data..." << '\n';
+  LOG_INFO("Waiting  for data...");
   auto received_data = client.Receive();
-  std::cout << "Received data: " << received_data << std::endl;
+  LOG_INFO("Received data: {}", received_data);
 }
