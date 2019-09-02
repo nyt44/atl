@@ -28,6 +28,7 @@ add_subdirectory(common)
 add_subdirectory(atl_daemon)
 add_subdirectory(atl_client)
 add_subdirectory(dbg_trace)
+add_subdirectory(ftests)
 
 add_executable(sender Sender.cpp)
 target_link_libraries(sender atl_client

@@ -1,5 +1,6 @@
 out/**
 Testing/**
+ftests/bin/**
 
 #Qt creator files
 *.config
