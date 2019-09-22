@@ -12,7 +12,7 @@ else
   make &&\
   cd .. &&\
   mkdir -p ftests/bin &&\
-  cp out/ftests/libpy_atl.so ftests/bin/py_atl.so &&\
+  cp out/ftests/libpy_atl.so ftests/py_atl.so &&\
   echo Build successfull.
 fi
 

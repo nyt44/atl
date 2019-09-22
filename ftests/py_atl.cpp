@@ -3,10 +3,10 @@
 #include <memory>
 #include <boost/python.hpp>
 
-class AtlClientWrapper
+class client
 {
  public:
-  AtlClientWrapper(int src_addr, int dest_addr, int conn_nr)
+  client(int src_addr, int dest_addr, int conn_nr)
     : client_{std::make_shared<atl::Client>(src_addr, dest_addr, conn_nr)} {}
   void Send(const std::string& data)
   {
@@ -25,9 +25,9 @@ BOOST_PYTHON_MODULE(py_atl)
 {
   using namespace boost::python;
 
-  class_<AtlClientWrapper>("AtlClientWrapper", init<int, int, int>())
-    .def("Send", &AtlClientWrapper::Send)
-    .def("Receive", &AtlClientWrapper::Receive)
+  class_<client>("client", init<int, int, int>())
+    .def("send", &client::Send)
+    .def("receive", &client::Receive)
   ;
 }
 
