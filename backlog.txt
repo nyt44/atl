@@ -7,3 +7,4 @@
 
 BUGS:
 - ATL Daemon sometimes needs system reboot
+- ATL Daemon not always removes connection
