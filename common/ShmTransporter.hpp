@@ -4,10 +4,9 @@
 
 #include <string>
 
-#include <boost/interprocess/shared_memory_object.hpp>
-#include <boost/interprocess/mapped_region.hpp>
-#include <boost/interprocess/sync/named_condition.hpp>
-#include <boost/interprocess/sync/named_mutex.hpp>
+#include <boost/interprocess/managed_shared_memory.hpp>
+#include <boost/interprocess/sync/interprocess_mutex.hpp>
+#include <boost/interprocess/sync/interprocess_condition.hpp>
 
 namespace atl
 {
@@ -20,10 +19,9 @@ class ShmTransporter : public ShmTransporterInterface
   std::string Receive() override;
 
  private:
-  boost::interprocess::shared_memory_object shm_object_;
-  boost::interprocess::mapped_region shm_region_;
-  boost::interprocess::named_condition shm_condition_variable_;
-  boost::interprocess::named_mutex shm_mutex_;
+  boost::interprocess::managed_shared_memory managed_shm_;
+  boost::interprocess::interprocess_mutex* shm_mutex_;
+  boost::interprocess::interprocess_condition* shm_condition_variable_;
 };
 
 class RealTransporterFactoryMethod : public TransporterFactoryMethod

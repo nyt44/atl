@@ -3,6 +3,7 @@
 - timed_receive
 - add std::vector version of Send method in ATLClient
 - change file names from camel to snake case
+- macro which prints log and throws an exception
 - ClientImpl dtor ignore response from server. It should print the message in case of negative response
 
 BUGS:
