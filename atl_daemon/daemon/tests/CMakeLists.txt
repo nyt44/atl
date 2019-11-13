@@ -1,4 +1,4 @@
-file(GLOB TEST_FILES "*Test.cpp")
+file(GLOB TEST_FILES "*_test.cpp")
 
 add_executable(daemon_test ${TEST_FILES})
 

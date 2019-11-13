@@ -1,4 +1,4 @@
-#include "Connection.hpp"
+#include "connection.hpp"
 
 #include <boost/interprocess/sync/interprocess_mutex.hpp>
 #include <boost/interprocess/sync/interprocess_condition.hpp>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ShmTransporterInterface.hpp"
+#include "shm_transporter_interface.hpp"
 
 #include <string>
 

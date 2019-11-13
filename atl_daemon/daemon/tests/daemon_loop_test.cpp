@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "DaemonLoop.hpp"
+#include "daemon_loop.hpp"
 
-#include "mocks/ShmTransporterMock.hpp"
-#include "mocks/ConnectionDiaryMock.hpp"
+#include "mocks/shm_transporter_mock.hpp"
+#include "mocks/connection_diary_mock.hpp"
 
 using namespace atl;
 using namespace testing;

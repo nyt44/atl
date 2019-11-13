@@ -1,7 +1,6 @@
 - investigate string_view, limit number of copies of connection string
 - timed_receive
 - add std::vector version of Send method in ATLClient
-- change file names from camel to snake case
 - ClientImpl dtor ignore response from server. It should print the message in case of negative response
 
 BUGS:

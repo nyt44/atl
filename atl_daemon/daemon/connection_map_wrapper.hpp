@@ -1,11 +1,11 @@
 #pragma once
 
-#include "ConnectionMapWrapperInterface.hpp"
+#include "connection_map_wrapper_interface.hpp"
 
 #include <unordered_map>
 #include <memory>
 
-#include "Connection.hpp"
+#include "connection.hpp"
 
 namespace atl
 {

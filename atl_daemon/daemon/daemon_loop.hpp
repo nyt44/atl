@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ShmTransporterInterface.hpp"
-#include "ConnectionDiaryInterface.hpp"
-#include "Connection.hpp"
+#include "shm_transporter_interface.hpp"
+#include "connection_diary_interface.hpp"
+#include "connection.hpp"
 
 namespace atl
 {

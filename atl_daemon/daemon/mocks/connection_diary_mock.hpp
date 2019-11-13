@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "ConnectionDiaryInterface.hpp"
+#include "connection_diary_interface.hpp"
 
 namespace mocks
 {

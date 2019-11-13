@@ -30,13 +30,13 @@ add_subdirectory(atl_client)
 add_subdirectory(dbg_trace)
 add_subdirectory(ftests)
 
-add_executable(sender Sender.cpp)
+add_executable(sender sender.cpp)
 target_link_libraries(sender atl_client
                              dbg_trace)
 
-add_executable(receiver Receiver.cpp)
+add_executable(receiver receiver.cpp)
 target_link_libraries(receiver atl_client
                                dbg_trace)
 
-add_executable(daemon_terminator DaemonTerminator.cpp)
+add_executable(daemon_terminator daemon_terminator.cpp)
 target_link_libraries(daemon_terminator atl_client)

@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "ConnectionDiary.hpp"
+#include "connection_diary.hpp"
 
-#include "ConnectionMapWrapperInterface.hpp"
-#include "mocks/ConnectionMapWrapperMock.hpp"
+#include "connection_map_wrapper_interface.hpp"
+#include "mocks/connection_map_wrapper_mock.hpp"
 
 using namespace ::testing;
 using namespace atl;

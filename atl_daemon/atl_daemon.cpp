@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
 
-#include "DaemonLoop.hpp"
-#include "Connection.hpp"
-#include "ConnectionMapWrapper.hpp"
-#include "ConnectionDiary.hpp"
-#include "ShmTransporter.hpp"
+#include "daemon_loop.hpp"
+#include "connection.hpp"
+#include "connection_map_wrapper.hpp"
+#include "connection_diary.hpp"
+#include "shm_transporter.hpp"
 #include "dbg_trace.hpp"
 
 int main()

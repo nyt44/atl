@@ -1,13 +1,13 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "ClientImpl.hpp"
+#include "client_impl.hpp"
 
 #include <memory>
 #include <string>
 #include <exception>
 
-#include "mocks/ShmTransporterMock.hpp"
+#include "mocks/shm_transporter_mock.hpp"
 
 using namespace ::testing;
 using namespace atl;

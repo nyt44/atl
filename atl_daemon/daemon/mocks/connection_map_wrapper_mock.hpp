@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "ConnectionMapWrapperInterface.hpp"
+#include "connection_map_wrapper_interface.hpp"
 
 namespace mocks
 {

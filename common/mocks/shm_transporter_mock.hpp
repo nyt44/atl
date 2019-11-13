@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "ShmTransporterInterface.hpp"
+#include "shm_transporter_interface.hpp"
 
 namespace mocks
 {

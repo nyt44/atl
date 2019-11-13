@@ -1,4 +1,4 @@
-#include "ConnectionMapWrapper.hpp"
+#include "connection_map_wrapper.hpp"
 
 #include "dbg_trace.hpp"
 

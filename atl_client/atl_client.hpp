@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "ClientImpl.hpp"
-#include "ShmTransporter.hpp"
+#include "client_impl.hpp"
+#include "shm_transporter.hpp"
 
 namespace atl
 {

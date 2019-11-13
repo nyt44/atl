@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ConnectionDiaryInterface.hpp"
+#include "connection_diary_interface.hpp"
 
-#include "ConnectionMapWrapperInterface.hpp"
+#include "connection_map_wrapper_interface.hpp"
 
 namespace atl
 {
