@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package example;
+
+message ExponentiationArgs
+{
+  int32 base = 1;
+  int32 exponent = 2;
+}
+
+message ExponentiationResult
+{
+  bool success = 1;
+  int32 result = 2;
+}
