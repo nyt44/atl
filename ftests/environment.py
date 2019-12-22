@@ -23,7 +23,7 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    subprocess.run('../out/daemon_terminator')
+    subprocess.run('../out/examples/daemon_terminator')
 
     for proc in context.processes:
         proc.join()

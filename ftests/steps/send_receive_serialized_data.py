@@ -2,6 +2,7 @@ from behave import *
 from multiprocessing import Process
 import py_atl
 from asserts import assert_equal
+import helper
 
 rec_result_log = 'receiver_result.log'
 
@@ -17,18 +18,13 @@ def sender(data_to_send):
 
 @given('receiving process is waiting for data')
 def step_impl(context):
-    rec_proc = Process(target=receiver, name='atl_receiver')
-    rec_proc.start()
-    context.processes.append(rec_proc)
+    helper.start_and_register_process(receiver, (), 'atl_receiver', context)
 
 @when('sending process sends {data}')
 def step_impl(context, data):
-    send_proc = Process(target=sender, args=(data,), name='atl_sender')
-    send_proc.start()
-    context.processes.append(send_proc)
+    helper.start_and_register_process(sender, (data,), 'atl_sender', context)
 
 @then('receiving process gets {expected_result}')
 def step_impl(context, expected_result):
-    with open(rec_result_log, 'r') as receiver_result:
-        received = receiver_result.read()
-    assert_equal(received, expected_result)
+    helper.join_all_processes(context)
+    helper.check_if_log_contain_expected_result(rec_result_log, expected_result)

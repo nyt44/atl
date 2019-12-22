@@ -12,3 +12,6 @@ Testing/**
 .gdb_history
 atl.cflags
 atl.cxxflags
+
+#Python temp files
+**__pycache__**
