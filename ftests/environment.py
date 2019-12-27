@@ -38,7 +38,11 @@ def after_scenario(context, scenario):
         shutil.move(log, os.path.join(test_output_path, log))
 
     with open(os.path.join(test_output_path, daemon_log), 'r') as log:
-        last_line = log.readlines()[-1]
-        assert re.match(r'.*ATL Daemon closed normally', last_line)
+        lines = log.readlines()
+        found = False
+        for line in lines:
+            if "ATL Daemon closed normally" in line:
+                found = True
+        assert found
 
 
