@@ -22,6 +22,7 @@ class ShmTransporter : public ShmTransporterInterface
   boost::interprocess::managed_shared_memory managed_shm_;
   boost::interprocess::interprocess_mutex* shm_mutex_;
   boost::interprocess::interprocess_condition* shm_condition_variable_;
+  bool* shm_flag_;
 };
 
 class RealTransporterFactoryMethod : public TransporterFactoryMethod

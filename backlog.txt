@@ -1,7 +1,8 @@
 - make Send method blocking (acknowledgement)
 - investigate string_view, limit number of copies of connection string
 - timed_receive
-- add std::vector version of Send method in ATLClient
+- asynchronous send and receive
+- add array version of Send method in ATLClient
 - ClientImpl dtor ignore response from server. It should print the message in case of negative response
 
 BUGS:

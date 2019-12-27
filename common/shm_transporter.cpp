@@ -19,6 +19,10 @@ ShmTransporter::ShmTransporter(const std::string& name)
   auto cnd_pair = managed_shm_.find<boost::interprocess::interprocess_condition>("cnd");
   LOG_AND_THROW_IF_NULLPTR(cnd_pair.first, "Pointer to condition variable is NULL");
   shm_condition_variable_ = cnd_pair.first;
+
+  auto flag_pair = managed_shm_.find<bool>("flag");
+  LOG_AND_THROW_IF_NULLPTR(flag_pair.first, "Pointer to flag is NULL");
+  shm_flag_= flag_pair.first;
 }
 
 void ShmTransporter::Send(const std::string& data)
@@ -31,15 +35,25 @@ void ShmTransporter::Send(const std::string& data)
   {
     LOG_AND_THROW("Data size: {} is greater than Shm buffer size: {}", data_size, shm_size);
   }
-
   std::strncpy(ptr_to_shm, data.c_str(), data_size);
+  {
+    boost::interprocess::scoped_lock<boost::interprocess::interprocess_mutex> lock{*shm_mutex_};
+    *shm_flag_ = true;
+  }
   shm_condition_variable_->notify_one();
 }
 
 std::string ShmTransporter::Receive()
 {
-  boost::interprocess::scoped_lock<boost::interprocess::interprocess_mutex> lock{*shm_mutex_};
-  shm_condition_variable_->wait(lock);
+  {
+    boost::interprocess::scoped_lock<boost::interprocess::interprocess_mutex> lock{*shm_mutex_};
+    shm_condition_variable_->wait(lock);
+    while (*shm_flag_ == false)
+    {
+      shm_condition_variable_->wait(lock);
+    }
+    *shm_flag_ = false;
+  }
 
   auto [received_data, size] = managed_shm_.find<char>("Data");
   (void)size;

@@ -7,7 +7,7 @@
 
 namespace
 {
-constexpr auto kFixedShmSize = 1024;
+constexpr auto kFixedShmSize = 4096;
 constexpr auto kFixedBufferSize  = 512;
 }
 
@@ -21,6 +21,7 @@ Connection::Connection(const std::string& name) : shm_segment_name_{name + "_shm
   managed_shm_.find_or_construct<char>("Data")[kFixedBufferSize]();
   managed_shm_.find_or_construct<boost::interprocess::interprocess_mutex>("mtx")();
   managed_shm_.find_or_construct<boost::interprocess::interprocess_condition>("cnd")();
+  managed_shm_.find_or_construct<bool>("flag")(false);
 
   LOG_DEBUG("Connection {} created", shm_segment_name_);
 }
